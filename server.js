@@ -8,12 +8,17 @@ const app = express();
 const port = process.env.PORT || 5000;
 app.use(express.json());
 
+//MIDDLEWARE
+const expressValidator = require('express-validator');
+app.use(expressValidator());
+
 //DATABASE
 require('./data/showcase-db');
 
-//APP
-app.listen(port, () => console.log(`Listening on port ${port}`));
+//CONTROLLERS
+require('./controllers/profile.js')(app);
 
-app.get('/express_backend', (req, res) => {
-  res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
-});
+//APP
+app.listen(port, () => console.log(`SpotifyShowcase listening on port ${port}`));
+
+module.exports = app;
