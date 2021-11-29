@@ -4,22 +4,19 @@
   "description": "A customizable showcase of a user's Spotify profile",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm start\" "
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/type9/spotify-showcase.git"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/type9/spotify-showcase/issues"
   },
   "homepage": "https://github.com/type9/spotify-showcase#readme",
-  "dependencies": {
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "mongoose": "^6.0.12"
+  "devDependencies": {
+    "concurrently": "^6.4.0"
   }
 }

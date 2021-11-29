@@ -9,8 +9,8 @@ const port = process.env.PORT || 5000;
 app.use(express.json());
 
 //MIDDLEWARE
-const expressValidator = require('express-validator');
-app.use(expressValidator());
+// const expressValidator = require('express-validator');
+// app.use(expressValidator());
 
 //DATABASE
 require('./data/showcase-db');

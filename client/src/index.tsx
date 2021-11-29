@@ -1,13 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+//Routes
+import App from './App';
+import Landing from './routes/landing';
+import Profile from './routes/profile';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Routes>
+        <Route path='/' element={<App />}>
+            <Route index element={<Landing />} />
+            <Route path=':spotifyId' element={<Profile />}/>
+        </Route>
+    </Routes>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 
