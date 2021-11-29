@@ -1,22 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import './index.scss';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 //Routes
 import App from './App';
-import Landing from './routes/landing';
-import Profile from './routes/profile';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <BrowserRouter>
-    <Routes>
-        <Route path='/' element={<App />}>
-            <Route index element={<Landing />} />
-            <Route path=':spotifyId' element={<Profile />}/>
-        </Route>
-    </Routes>
+    <App />
   </BrowserRouter>,
   document.getElementById('root')
 );

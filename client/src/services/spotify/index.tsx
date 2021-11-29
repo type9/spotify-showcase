@@ -1,11 +1,12 @@
 require('dotenv').config();
 
-function redirect(){
-    const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID ? process.env.REACT_APP_SPOTIFY_CLIENT_ID : '';
-    const AUTHORIZE_URL = process.env.REACT_APP_SPOTIFY_AUTHORIZE_URL ? process.env.REACT_APP_SPOTIFY_AUTHORIZE_URL : '';
-    const REDIRECT_URL = process.env.REACT_APP_SPOTIFY_REDIRECT_URL + window.location.pathname;
-    const SCOPE = process.env.REACT_APP_SPOTIFY_AUTHORIZATION_SCOPE ? process.env.REACT_APP_SPOTIFY_AUTHORIZATION_SCOPE : '';
+//SPOTIFY API CONSTANTS
+const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID ? process.env.REACT_APP_SPOTIFY_CLIENT_ID : '';
+const AUTHORIZE_URL = process.env.REACT_APP_SPOTIFY_AUTHORIZE_URL ? process.env.REACT_APP_SPOTIFY_AUTHORIZE_URL : '';
+const REDIRECT_URL = process.env.REACT_APP_SPOTIFY_REDIRECT_URL + window.location.pathname;
+const SCOPE = process.env.REACT_APP_SPOTIFY_AUTHORIZATION_SCOPE ? process.env.REACT_APP_SPOTIFY_AUTHORIZATION_SCOPE : '';
 
+export const getTokenWithRedirect = () => {
     const generateRandomString = function(length: number) {
         let text = '';
         const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -26,5 +27,3 @@ function redirect(){
     
     window.location.href = url  
 }
-
-export default redirect;

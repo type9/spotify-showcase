@@ -1,0 +1,15 @@
+@import '_main.scss';
+
+.core-layout {
+    height: 100vh;
+    width: 100vw;
+}
+
+.core-layout__header{
+    width:100vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 0.25em;
+    background-color: $primary-color;
+}

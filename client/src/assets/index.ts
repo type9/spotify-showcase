@@ -1,0 +1,1 @@
+export { default as SpotifyShowcaseBrand } from './SpotifyShowcaseBrand.svg';

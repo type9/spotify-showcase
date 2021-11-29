@@ -1,14 +1,16 @@
-import AuthWrapper from './components/spotify/auth-wrapper';
-import './App.css';
-import Header from './components/header/header';
-
+import './App.scss';
+import { Routes, Route } from 'react-router-dom';
+import { CoreLayout } from 'layouts';
+import { Landing, Profile } from 'pages';
 function App() {
-
   return (
     <div className="App">
-      <AuthWrapper>
-        <Header />
-      </AuthWrapper>
+      <Routes>
+        <Route path="/" element={<CoreLayout />} >
+          <Route path="/" element={<Landing />} />
+          <Route path="/:profileId" element={<Profile />} />
+        </Route>
+      </Routes>
     </div>
   );
 }

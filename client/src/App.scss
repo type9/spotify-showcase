@@ -1,0 +1,5 @@
+@import '_main.scss';
+
+.text-button{
+    @include text-button($secondary-color);
+}

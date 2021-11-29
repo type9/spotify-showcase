@@ -1,10 +1,10 @@
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom'
-import { AuthContext, AuthContextType } from './auth-context';
+import { AuthContext, AuthContextType } from 'context/spotify';
 import Spotify from 'spotify-web-api-js';
 
 const API = new Spotify();
-function AuthWrapper({children}:{children:any}){
+export const AuthWrapper = ({children}:{children:any}) => {
     const location = useLocation();
     const params = new URLSearchParams(location.hash);
     const [spotifyToken, setSpotifyToken] = useState<AuthContextType['spotifyToken']>(null);
@@ -36,5 +36,3 @@ function AuthWrapper({children}:{children:any}){
         </AuthContext.Provider>
     );
 }
-
-export default AuthWrapper;
