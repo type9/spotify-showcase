@@ -6,10 +6,16 @@
 }
 
 .core-layout__header{
+    height: 3em;
     width:100vw;
     display: flex;
     align-items: center;
     justify-content: space-around;
     padding: 0.25em;
     background-color: $primary-color;
+}
+
+.core-layout__viewport{
+    height: calc(100vh - 3em);
+    overflow: scroll;
 }

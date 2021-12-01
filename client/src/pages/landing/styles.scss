@@ -1,0 +1,76 @@
+@import '_main.scss';
+
+.Landing {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: $paperbackground-color;
+    padding-top: 8em;
+}
+
+.Landing__jumbotron {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.Landing__jumbotron h1 {
+    font-size: 3em;
+    font-weight: 800;
+}
+
+.Landing__jumbotron h4 {
+    width: 50em;
+}
+
+// ANIMATED JUMBOTRON
+// from https://www.uiui.dev/
+.uiui-headline {
+  overflow: hidden;
+  margin: 0;
+  font-size: clamp(1rem, 6vw, 50px);
+  perspective: 500px;
+}
+
+.uiui-headline > * {
+  will-change: auto;
+  display: inline-block;
+  transform: translate(0, 100%) translateZ(0);
+}
+
+.uiui-headline > *.Revealed {
+  transform: translate(0, 0) translateZ(0);
+}
+
+.uiui-gradient-copy span {
+  will-change: auto;
+  display: inline-block;
+  transform: translateZ(0);
+  background-repeat: no-repeat;
+  background-image: linear-gradient(230deg, #35249b, #8b13c3 50%, #ea577a);
+  background-size: 400%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: bg 4s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+@keyframes bg {
+  0% {
+    background-position: 0% 0%;
+  }
+  25% {
+    background-position: 0% 100%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  75% {
+    background-position: 0% 100%;
+  }
+  100% {
+    background-position: 0% 5%;
+  }
+}
