@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import TextTransition, { presets } from "react-text-transition";
-import { getTokenWithRedirect } from 'services';
+import { getTokenWithRedirect } from 'services/spotify';
 import { SpotifyIcon } from 'assets';
 import './styles.scss';
 

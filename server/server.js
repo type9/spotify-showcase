@@ -6,11 +6,10 @@ dotenv.config();
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 5000;
-app.use(express.json());
+app.use(express.json())
+app.use(express.urlencoded({extended: true}));
 
 //MIDDLEWARE
-// const expressValidator = require('express-validator');
-// app.use(expressValidator());
 
 //DATABASE
 require('./data/showcase-db');

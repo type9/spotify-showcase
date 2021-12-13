@@ -1,16 +1,45 @@
 const Profile = require('../models/profile');
 const clientAuth = require('../spotifyclient/appauth');
+const Spotify = require('spotify-web-api-node');
+const S = new Spotify();
 
 module.exports = (app) => {
     //Index
-    app.get('/', (req, res) => {
-        res.send('Welcome to SpotifyShowcase');
+    app.post('/login', (req, res) => {
+        //checks validity of spotify acess token and creates a new user if needed.
+        if(!req.body.spotifyAccessToken) return res.status(401).send('missing access token');
+        S.setAccessToken(req.body.spotifyAccessToken);
+        S.getMe()
+        .then(result => {
+            console.log(result.statusCode);
+            if(result.statusCode !== 200) return res.status(401).send('invalid access token');
+            return result.body;
+        })
+        .then(spotifyProfile => {
+            return Profile.findOneAndUpdate(
+                {'spotifyId': spotifyProfile.id},
+                {spotifyId: spotifyProfile.id, spotifyProfile: spotifyProfile},
+                {upsert: true, new: true}
+            ).exec();
+        })
+        .then(() => {
+            return res.status(200);
+        })
+        .catch(err => {
+            console.log('Error syncing profile', err)
+            res.status(500).send('Error syncing profile')
+        })
     })
+
     //Get profile by ID
     app.get('/u/:spotifyId', (req, res) => {
-        Profile.findOne({ 'spotifyId': req.params.spotifyId })
-        .then(profile => {
-            res.send(profile);
-        }).catch(err => console.log(err.message));
+        Profile.findOne({ 'spotifyId': req.params.spotifyId }).exec()
+            .then(result => {
+                return res.status(200).send(result);
+            })
+            .catch(err => {
+                console.log('No data found for ID', err);
+                res.status(404).send('No data found for ID');
+            });
     });
 }

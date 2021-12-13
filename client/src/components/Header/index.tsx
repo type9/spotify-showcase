@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { AccountButton }from '../spotify/AccountButton';
+import { AccountButton }from 'components/spotify/AccountButton';
 import { SpotifyShowcaseBrand } from 'assets';
 import classnames from 'classnames';
 import './styles.scss'

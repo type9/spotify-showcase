@@ -1,0 +1,19 @@
+@import '_main';
+
+.Profile__header {
+    display:flex;
+    justify-content: left;
+    background-color: $primary-color;
+    gap: 2.5em;
+    height: 15em;
+    margin-top: 2.5em;
+    padding: 2em 5em 2em 5em;
+}
+
+.header__left img {
+    height: 100%;
+}
+
+.header__right {
+    color: white;
+}

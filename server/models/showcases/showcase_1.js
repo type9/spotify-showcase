@@ -15,4 +15,4 @@ const ShowcaseSchema = new Schema({
     slot6: {type: String, required: false},
 });
 
-module.exports = mongoose.model("VinylFrames", ShowcaseSchema);
+module.exports = mongoose.model("showcase_1", ShowcaseSchema);

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { AuthContext, AuthContextType } from 'context/spotify';
+import { syncUserWithApi } from 'services/api';
 import Spotify from 'spotify-web-api-js';
 
 const API = new Spotify();
@@ -21,7 +22,7 @@ export const AuthWrapper = ({children}:{children:any}) => {
                     if(!res.id) { localStorage.removeItem('spotifyAccessToken'); return; }
                     localStorage.setItem('spotifyAccessToken', hashToken);
                     setSpotifyUser({id: res.id, name: res.display_name ? res.display_name : "NAME_MISSING"});
-                    location.hash = "";
+                    syncUserWithApi({spotifyAccessToken: hashToken});
                 });
         }
     }, [hashToken]);
@@ -34,6 +35,7 @@ export const AuthWrapper = ({children}:{children:any}) => {
                     if(!res.id) { localStorage.removeItem('spotifyAccessToken'); return; }
                     localStorage.setItem('spotifyAccessToken', localToken);
                     setSpotifyUser({id: res.id, name: res.display_name ? res.display_name : "NAME_MISSING"});
+                    syncUserWithApi(localToken);
                 })
         }
     }, [localToken]);
