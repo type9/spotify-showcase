@@ -15,7 +15,7 @@ const Header = ({
             </div>
             <div className="header__right">
                 <div className="header__titles">
-                    <h1 className="header__displayName">{user.spotifyProfile.display_name}</h1>
+                    <h1 className="header__displayName">{user.spotifyProfile.display_name.toUpperCase()}</h1>
                     <h2 className="header__subtitle">{header?.subtitle}</h2>
                 </div>
                 <h4 className="header__description">{header?.description}</h4>

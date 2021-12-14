@@ -1,4 +1,4 @@
 export const defaultProfile = {
     header: 0,
-    showcases: []
+    showcases: [{id: 0}]
 }

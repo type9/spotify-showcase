@@ -1,4 +1,4 @@
-const Profile = require('../models/profile');
+const Profile = require('../models/profile/profile');
 const clientAuth = require('../spotifyclient/appauth');
 const Spotify = require('spotify-web-api-node');
 const S = new Spotify();
@@ -11,14 +11,13 @@ module.exports = (app) => {
         S.setAccessToken(req.body.spotifyAccessToken);
         S.getMe()
         .then(result => {
-            console.log(result.statusCode);
             if(result.statusCode !== 200) return res.status(401).send('invalid access token');
             return result.body;
         })
         .then(spotifyProfile => {
             return Profile.findOneAndUpdate(
                 {'spotifyId': spotifyProfile.id},
-                {spotifyId: spotifyProfile.id, spotifyProfile: spotifyProfile},
+                {spotifyId: spotifyProfile.id, spotifyProfile},
                 {upsert: true, new: true}
             ).exec();
         })
@@ -31,9 +30,9 @@ module.exports = (app) => {
         })
     })
 
-    //Get profile by ID
+    //Get profile by con
     app.get('/u/:spotifyId', (req, res) => {
-        Profile.findOne({ 'spotifyId': req.params.spotifyId }).exec()
+        Profile.findOne({ 'spotifyId': req.params.spotifyId }).populate('header').populate('showcases').exec()
             .then(result => {
                 return res.status(200).send(result);
             })

@@ -1,6 +1,7 @@
-import { useEffect, useState, lazy, Suspense } from "react";
+import { useEffect, useState, Suspense, createElement } from "react";
 import { useParams } from "react-router-dom";
 import { headerIndex } from 'components/profile/headers';
+import { showcaseIndex } from 'components/profile/showcases';
 import { getUser } from 'services/api';
 import { defaultProfile } from './constants';
 import './styles.scss';
@@ -16,6 +17,13 @@ export const Profile = () => {
         return (
             <Header className={`Profile__header`} user={user} header={user.header}/>
         )
+    }
+    
+    const renderShowcases = () => {
+        return showcases.map(showcase => {
+            const Showcase = showcaseIndex[showcase.id];
+            return createElement(Showcase, {className: 'Profile__showcase', showcase});
+        });
     }
 
     useEffect(() => {
@@ -33,6 +41,11 @@ export const Profile = () => {
             <Suspense fallback={<div>Loading....</div>}>
                 {renderHeader()}
             </Suspense>
+            <div className='Showcases'>
+                <Suspense fallback={<div>Loading....</div>}>
+                    {renderShowcases()}
+                </Suspense>
+            </div>
         </article>
     );
 }

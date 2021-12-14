@@ -5,3 +5,10 @@
     overflow-x: clip;
     background-color: $paperbackground-color; 
 }
+
+.Showcases {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+}
