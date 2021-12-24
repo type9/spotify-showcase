@@ -6,7 +6,7 @@ const S = new Spotify();
 module.exports = (app) => {
     //Index
     app.post('/login', (req, res) => {
-        //checks validity of spotify acess token and creates a new user if needed.
+        //checks validity of spotify access token and creates a new user if needed.
         if(!req.body.spotifyAccessToken) return res.status(401).send('missing access token');
         S.setAccessToken(req.body.spotifyAccessToken);
         S.getMe()
