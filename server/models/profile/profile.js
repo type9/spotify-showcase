@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const Header = require("./header");
-const PlaylistShowcase = require("../showcases/PlaylistShowcase");
+const Showcase = require("./showcase");
 
 const ProfileSchema = new Schema({
     spotifyId: {type: String, required: true},
@@ -13,14 +13,14 @@ const ProfileSchema = new Schema({
         twitter: {type: String, required: false},
     },
     header: {type: Schema.Types.ObjectID, required: false, ref: 'Header'},
-    showcases: [{type: Schema.Types.ObjectID, required: true}],
+    showcases: [{type: Schema.Types.ObjectID, required: true, ref: 'Showcase'}]
 })
 
 //Creates default header and showcase
 ProfileSchema.post('findOneAndUpdate', async function(result){
     if(!result.header) {
         const newHeader = await Header.create({});
-        const newShowcase = await PlaylistShowcase.create({});
+        const newShowcase = await Showcase.create({});
         result.header = newHeader._id;
         result.showcases = [newShowcase._id];
     }

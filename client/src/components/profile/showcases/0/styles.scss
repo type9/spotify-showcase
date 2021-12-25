@@ -1,0 +1,13 @@
+@import '_main';
+
+.Profile__showcase{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap-reverse;
+    border-radius: 3px;
+    gap: 2em;
+    max-width: 48em;
+    min-width: 18em;
+    background-color: $nearblack-color;
+    padding: 2em;
+}

@@ -32,13 +32,19 @@ module.exports = (app) => {
 
     //Get profile by con
     app.get('/u/:spotifyId', (req, res) => {
-        Profile.findOne({ 'spotifyId': req.params.spotifyId }).populate('header').populate('showcases').exec()
-            .then(result => {
-                return res.status(200).send(result);
-            })
-            .catch(err => {
-                console.log('No data found for ID', err);
-                res.status(404).send('No data found for ID');
-            });
+        Profile.findOne({ 'spotifyId': req.params.spotifyId })
+        .populate('header')
+        .populate({
+            path: 'showcases', 
+            populate: {path: 'body'}
+        })
+        .exec()
+        .then(result => {
+            return res.status(200).send(result);
+        })
+        .catch(err => {
+            console.log('No data found for ID', err);
+            res.status(404).send('No data found for ID');
+        });
     });
 }

@@ -1,4 +1,3 @@
-require('dotenv').config();
 const axios = require('axios').default;
 
 const API_URL = process.env.REACT_APP_API_URL;

@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 //SPOTIFY API CONSTANTS
 const CLIENT_ID = process.env.REACT_APP_SPOTIFY_CLIENT_ID ? process.env.REACT_APP_SPOTIFY_CLIENT_ID : '';
 const AUTHORIZE_URL = process.env.REACT_APP_SPOTIFY_AUTHORIZE_URL ? process.env.REACT_APP_SPOTIFY_AUTHORIZE_URL : '';

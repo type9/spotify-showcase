@@ -1,4 +1,7 @@
+import { cloneElement } from 'react';
+import { Playlist } from 'components/display';
 import './styles.scss';
+
 const Showcase = ({
     className,
     showcase,
@@ -8,7 +11,13 @@ const Showcase = ({
 }) => {
     return (
         <section className={className}>
-            
+            {showcase.body.playlists.map((playlistId: string) => cloneElement(
+                <Playlist
+                    className={`Playlist`}
+                    key={`${playlistId}`}
+                    playlistId={playlistId}
+                />
+            ))}
         </section>
     );
 }

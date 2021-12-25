@@ -10,19 +10,24 @@ export const Profile = () => {
     const { profileId } = useParams();
     const [user, setUser] = useState<any>(null);
     const [header, setHeader] = useState(defaultProfile.header)
-    const [showcases, setShowcases] = useState(defaultProfile.showcases);
     
     const renderHeader = () => {
-        const Header = headerIndex[header];
+        const Header = headerIndex[user.header.variantId];
         return (
             <Header className={`Profile__header`} user={user} header={user.header}/>
         )
     }
     
     const renderShowcases = () => {
-        return showcases.map(showcase => {
-            const Showcase = showcaseIndex[showcase.id];
-            return createElement(Showcase, {className: 'Profile__showcase', showcase});
+        return user.showcases.map((showcase: any) => {
+            const Showcase = showcaseIndex[showcase.variantId];
+            return createElement(Showcase, 
+                {
+                    className: `Profile__showcase showcaseId__${showcase._id}`,
+                    showcase,
+                    key: `Showcase__${showcase._id}`
+                }
+            );
         });
     }
 
